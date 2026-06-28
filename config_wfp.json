@@ -1,0 +1,67 @@
+{
+  "description": "WFP_Project Backup Configuration",
+
+  "paths": {
+    "sourceDir": "D:\\WFP_Project",
+    "tempDir": "D:\\backup_agent\\temp_wfp",
+    "gdriveRemote": "gdrive",
+    "gdriveDest": "wfp-backups"
+  },
+
+  "steps": {
+    "checkDiskSpace": true,
+    "zipFolders": true,
+    "uploadToGdrive": true,
+    "deleteLocalZip": true,
+    "uploadManifest": true
+  },
+
+  "mode": {
+    "type": "parallel"
+  },
+
+  "spaceCheck": {
+    "marginMultiplier": 1.5,
+    "minFreeSpaceMB": 500,
+    "failAction": "skip"
+  },
+
+  "zip": {
+    "compressionLevel": 5
+  },
+
+  "upload": {
+    "maxRetries": 3,
+    "retryDelaySeconds": 5,
+    "transfers": 4,
+    "parallelUploads": true,
+    "batchSize": 3
+  },
+
+  "folders": {
+    "skipList": [
+      ".claude",
+      "_bmad",
+      "_bmad-output",
+      "backup_agent",
+      "temp",
+      "node_modules",
+      "__pycache__",
+      ".git",
+      "venv",
+      "env"
+    ],
+    "includePatterns": [],
+    "excludePatterns": []
+  },
+
+  "logging": {
+    "level": "INFO",
+    "consoleOutput": true
+  },
+
+  "test": {
+    "enabled": false,
+    "maxFoldersToProcess": 0
+  }
+}

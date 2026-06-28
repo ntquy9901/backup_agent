@@ -1,0 +1,79 @@
+{
+  "description": "BMAD Backup Configuration - Customize backup behavior here",
+
+  "paths": {
+    "sourceDir": "D:\\bmad-projects",
+    "tempDir": "D:\\bmad-projects\\backup_agent\\temp",
+    "gdriveRemote": "gdrive",
+    "gdriveDest": "bmad-backups"
+  },
+
+  "steps": {
+    "checkDiskSpace": true,
+    "zipFolders": true,
+    "uploadToGdrive": true,
+    "deleteLocalZip": true,
+    "uploadManifest": true
+  },
+
+  "mode": {
+    "type": "parallel",
+    "comment": "streaming = zip→upload→delete per folder (saves disk space) | batch = zip all→upload all→delete all (faster but needs more space) | parallel = process multiple folders simultaneously (best speed with moderate disk usage)"
+  },
+
+  "spaceCheck": {
+    "marginMultiplier": 1.5,
+    "minFreeSpaceMB": 500,
+    "failAction": "skip",
+    "comment": "failAction: skip (skip folder, continue) | stop (stop entire backup)"
+  },
+
+  "zip": {
+    "compressionLevel": 5,
+    "comment": "1=fastest, 9=smallest, 5=balanced"
+  },
+
+  "upload": {
+    "maxRetries": 3,
+    "retryDelaySeconds": 5,
+    "transfers": 4,
+    "parallelUploads": true,
+    "batchSize": 3,
+    "comment": "transfers = rclone internal transfers | parallelUploads = upload multiple zip files simultaneously | batchSize = number of folders to zip+upload in parallel (recommended: 2-4)"
+  },
+
+  "folders": {
+    "skipList": [
+      ".claude",
+      "_bmad",
+      "_bmad-output",
+      "backup_agent",
+      "temp"
+    ],
+    "includePatterns": [],
+    "excludePatterns": []
+  },
+
+  "logging": {
+    "level": "INFO",
+    "consoleOutput": true,
+    "comment": "level: DEBUG | INFO | WARNING | ERROR"
+  },
+
+  "test": {
+    "enabled": false,
+    "testFolder": "backup_agent",
+    "maxFoldersToProcess": 3,
+    "comment": "Set enabled=true for testing with limited folders"
+  },
+
+  "download": {
+    "destinationDir": "D:\\bmad-projects\\backup_agent\\downloads",
+    "batchSize": 3,
+    "maxRetries": 3,
+    "verifyAfterDownload": true,
+    "extractAfterDownload": false,
+    "deleteZipAfterExtract": false,
+    "comment": "destinationDir = where to save downloaded files | batchSize = parallel download count | verifyAfterDownload = check zip integrity | extractAfterDownload = auto-extract zips"
+  }
+}

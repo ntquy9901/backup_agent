@@ -1,0 +1,24 @@
+# Temp files
+temp/
+temp_*/
+downloads/
+
+# Logs
+*.log
+
+# ZIP files
+*.zip
+
+# Keep temp manifests but ignore old ones
+# MANIFEST_*.txt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test outputs
+test_*/

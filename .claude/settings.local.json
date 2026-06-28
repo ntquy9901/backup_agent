@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(du -sh \"D:/bmad-projects\"/*)",
+      "Bash(where rclone:*)",
+      "Bash(cd /tmp)",
+      "Bash(curl -L -o rclone.zip https://github.com/rclone/rclone/releases/download/v1.68.0/rclone-v1.68.0-windows-amd64.zip)",
+      "Bash(unzip -q rclone.zip)",
+      "Bash(ls -la rclone-v*/)",
+      "Bash(cp /tmp/rclone-v*/rclone.exe /c/Windows/System32/rclone.exe)",
+      "Bash(chmod +x /c/Windows/System32/rclone.exe)",
+      "Bash(rclone version:*)",
+      "Bash(mkdir -p /c/Users/QUY/bin)",
+      "Bash(cp /tmp/rclone-v*/rclone.exe /c/Users/QUY/bin/rclone.exe)",
+      "Bash(chmod +x /c/Users/QUY/bin/rclone.exe)",
+      "Bash(export PATH=\"/c/Users/QUY/bin:$PATH\")",
+      "Bash(where 7z)",
+      "Bash(powershell -ExecutionPolicy Bypass -File test_gdrive.ps1)",
+      "Bash(powershell -ExecutionPolicy Bypass -File test_zip.ps1)",
+      "Bash(powershell -Command ':*)",
+      "Bash(rclone authorize:*)",
+      "Bash(rclone about:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File test_single_backup.ps1)",
+      "Bash(powershell -ExecutionPolicy Bypass -File test_single_backup.ps1 -TestFolderName \"backup_agent\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File backup_to_gdrive_v2.ps1)",
+      "Bash(powershell -ExecutionPolicy Bypass -File test_download.ps1)",
+      "Bash(rclone ls:*)",
+      "Bash(rclone lsd:*)",
+      "Bash(mkdir -p test_download_temp)",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"& '.\\\\backup_download.ps1' -ConfigPath '.\\\\config.json' -Mode download -MaxBackups 1\")",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"& '.\\\\backup_download.ps1' -Mode list\")",
+      "Bash(cat \"D:/bmad-projects/backup_agent/downloads/download_\"*.log)",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"& '.\\\\backup_download.ps1' -ConfigPath '.\\\\config.json' -Mode download -MaxBackups 3\")",
+      "Bash(powershell:*)"
+    ]
+  }
+}
